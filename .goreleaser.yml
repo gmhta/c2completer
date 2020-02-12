@@ -1,0 +1,31 @@
+project_name: c2completer
+release:
+  github:
+    owner: gmhta
+    name: c2completer
+  name_template: '{{.Tag}}'
+  # disable: true
+
+builds:
+- 
+  binary: c2completer
+  env:
+  - CGO_ENABLED=0
+  goos:
+  - linux
+  goarch:
+  - amd64
+  main: .
+  ldflags:
+  - -s -w -X main.version={{.Version}} -X main.commit={{.Commit}} -X main.date={{.Date}}
+
+archives:
+- format: gz
+  files:
+  - none*
+
+checksum:
+  name_template: 'checksums.txt'
+
+snapshot:
+  name_template: "{{ .Tag }}-next"
